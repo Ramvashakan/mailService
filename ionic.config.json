@@ -1,5 +1,7 @@
 {
   "name": "mailTaskService",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

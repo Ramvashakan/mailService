@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MailDataService } from '../service/mail-data.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,49 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  CardView:boolean=false;
+
+  to:any;
+  content:any;
+  
+
+  darkMode:boolean = true;
+
+  mailList = [];
+
+  constructor(private mailService:MailDataService) {
+
+    this.mailList = mailService.getList();
+
+    console.log(this.mailList);
+
+  }
+
+
+  dark(){
+
+    document.body.classList.toggle( 'dark' );
+
+  }
+
+  send(){
+
+    this.mailService.getData(this.to,this.content);
+
+    
+    
+  }
+
+  close(){
+
+    this.CardView = false
+
+  }
+
+  add(){
+    this.CardView = true
+    this.mailList = this.mailService.getList();
+  }
+
 
 }

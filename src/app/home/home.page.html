@@ -7,14 +7,55 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  
+  <ion-list>
+    <ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+      <ion-icon slot="start" name= "moon" ></ion-icon>
+      <ion-label>Dark Theme</ion-label>
+      <ion-toggle  [(ngModel)]="darkModel" (ionChange) = "dark()"  ></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+ 
+  <ion-list *ngFor="let mail of mailList">
+
+    <app-mail [mail] = "mail" ></app-mail>
+
+  </ion-list>
+
+
+  <ion-card *ngIf="CardView">
+
+    <ion-button (click)="close()">
+      <ion-icon name="close"></ion-icon>
+      </ion-button>
+
+    <ion-item lines="none">
+      <ion-label>To:</ion-label>
+      <ion-input [(ngModel)]="to" ></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label >Content:</ion-label>
+      <ion-input [(ngModel)]="content"></ion-input>
+    </ion-item>
+
+    <ion-button (click)="send()">
+    <ion-icon name="send"></ion-icon>
+    </ion-button>
+
+  </ion-card>
+  
 </ion-content>
+
+
+<ion-footer>
+
+  <ion-fab (click)="add()" horizontal="end" vertical="bottom"  >
+    <ion-fab-button color="primary"> 
+      <ion-icon name="add"></ion-icon>  
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-footer>
